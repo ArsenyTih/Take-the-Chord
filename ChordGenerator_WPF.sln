@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChordGenerator_WPF", "ChordGenerator_WPF\ChordGenerator_WPF.csproj", "{921C91D7-ED27-4DAA-9C8C-620AB8B21E10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChordRandomizerTests", "chordRand\ChordRandomizerTests\ChordRandomizerTests.csproj", "{7F69000D-C5D5-49E3-9585-29E676CD7072}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChordRandomizer", "chordRand\ChordRandomizer\ChordRandomizer.csproj", "{F18260D5-C1C3-4851-B260-BD1E3FDC3F4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{921C91D7-ED27-4DAA-9C8C-620AB8B21E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{921C91D7-ED27-4DAA-9C8C-620AB8B21E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{921C91D7-ED27-4DAA-9C8C-620AB8B21E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{921C91D7-ED27-4DAA-9C8C-620AB8B21E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F69000D-C5D5-49E3-9585-29E676CD7072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F69000D-C5D5-49E3-9585-29E676CD7072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F69000D-C5D5-49E3-9585-29E676CD7072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F69000D-C5D5-49E3-9585-29E676CD7072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F18260D5-C1C3-4851-B260-BD1E3FDC3F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F18260D5-C1C3-4851-B260-BD1E3FDC3F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F18260D5-C1C3-4851-B260-BD1E3FDC3F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F18260D5-C1C3-4851-B260-BD1E3FDC3F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C74547EF-F77E-4548-A5CC-575C4E25498A}
+	EndGlobalSection
+EndGlobal

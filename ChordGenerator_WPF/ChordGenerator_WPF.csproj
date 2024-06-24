@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\AddToFavourites.png" />
+    <None Remove="Images\Close.png" />
+    <None Remove="Images\Favourites.png" />
+    <None Remove="Images\Help.png" />
+    <None Remove="Images\History.png" />
+    <None Remove="Images\Icon.ico" />
+    <None Remove="Images\Neck.png" />
+    <None Remove="Images\Noise.png" />
+    <None Remove="Images\Settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\chordRand\ChordRandomizer\ChordRandomizer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AddToFavourites.png" />
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\Favourites.png" />
+    <Resource Include="Images\Help.png" />
+    <Resource Include="Images\History.png" />
+    <Resource Include="Images\Icon.ico" />
+    <Resource Include="Images\Neck.png" />
+    <Resource Include="Images\Noise.png" />
+    <Resource Include="Images\Settings.png" />
+  </ItemGroup>
+
+</Project>

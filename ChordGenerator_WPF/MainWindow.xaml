@@ -1,0 +1,381 @@
+﻿<Window x:Class="ChordGenerator_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChordGenerator_WPF"
+        mc:Ignorable="d"
+        Name="mainWindow"
+        Closed="Window_Closed"
+        Icon="Images\Icon.ico"
+        Title="Take the Chord" Height="720" Width="1280" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Grid Background="#FFF7E8C5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="443*"/>
+            <RowDefinition Height="261*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid HorizontalAlignment="Center" Margin="0,92,0,0" Width="430" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="67" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="67" />
+                </Grid.ColumnDefinitions>
+
+                <!-- btn_Sound -->
+                <Grid Grid.Column="0">
+                    <Button x:Name="btn_Sound"
+                            Style="{StaticResource FlatButton}"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            FontSize="20" Width="67" Height="66"
+                            Command="Play">
+                            <Button.CommandBindings>
+                                <CommandBinding Command="Play" Executed="PlayCommandBinding_Executed"/>
+                            </Button.CommandBindings>
+                        <Image Source="Images\Noise.png"/>
+                    </Button>
+                </Grid>
+
+                <!-- ChordName -->
+                <Grid Grid.Column="1">
+                    <Border Background="#FFEFDCAF" VerticalAlignment="Center" Padding="10"
+                        Margin="15 0 15 0" Height="130" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Name="ChordName"
+                                   Text="*Здесь будет название*"
+                                   FontSize="30" 
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+                    </Border>
+                </Grid>
+
+                <!-- btn_AddToFavourites -->
+                <Grid Grid.Column="2">
+                    <Button x:Name="btn_AddToFavourites"
+                            Style="{StaticResource FlatButton}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" 
+                            FontSize="10" Width="43" Height="74"
+                            Click="btn_AddToFavourites_Click">
+                        <Image Source="Images\AddToFavourites.png"/>
+                    </Button>
+                </Grid>
+
+            </Grid>
+
+            <!-- btn_CreateChord -->
+            <Button x:Name="btn_CreateChord"
+                    Style="{StaticResource DarkButton}"
+                    Content="Создать аккорд"
+                    HorizontalAlignment="Center" VerticalAlignment="Top" 
+                    FontSize="30" Width="344" Height="67" 
+                    Margin="0,241,0,0" 
+                    Click="btn_CreateChord_Click"/>
+
+            <!-- btn_Settings -->
+            <Button x:Name="btn_Settings" 
+                    Style="{StaticResource FlatButton}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Width="87" Height="87"
+                    Click="btn_Settings_Click">
+                <Image Source="Images\Settings.png"/>
+            </Button>
+
+            <!-- btn_Help -->
+            <Button x:Name="btn_Help" 
+                    Style="{StaticResource FlatButton}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Width="87" Height="87"
+                    Margin="97,0,0,0"
+                    Click="btn_Help_Click">
+                <Image Source="Images\Help.png"/>
+            </Button>
+
+            <!-- btn_History -->
+            <Button x:Name="btn_History"
+                    Style="{StaticResource DarkButton}"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Width="97" Height="168" 
+                    Margin="0,0,0,199"
+                    Click="btn_History_Click">
+                <Image Source="Images\History.png" Stretch="Uniform"/>
+            </Button>
+
+            <!-- HistoryFrame -->
+            <local:History x:Name="HistoryFrame" 
+                           Width="425" Height="168"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Margin="0,0,0,199"
+                           Visibility="Collapsed"/>
+
+            <!-- btn_Favourite -->
+            <Button x:Name="btn_Favourite"
+                    Style="{StaticResource DarkButton}"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Width="97" Height="168"
+                    Margin="0,0,0,31"
+                    Click="btn_Favourite_Click">
+                <Image Source="Images\Favourites.png" Stretch="Uniform"/>
+            </Button>
+
+            <!-- FavouritesFrame -->
+            <local:Favourites x:Name="FavouritesFrame" 
+               Width="425" Height="168"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,31"
+               Visibility="Collapsed"/>
+
+            <!-- Счётчик аппликатур -->
+            <Grid Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="126,0,0,128">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Текущая аппликатура (можно выбрать) -->
+                <Border Grid.Column="0" BorderThickness="0.5" Background="#FFEFDCAF" BorderBrush="Black" Padding="0 5 0 5">
+                    <TextBox Name="ChooseFingering" 
+                             
+                             BorderThickness="0"
+                             Background="{x:Null}" 
+                             TextAlignment="Center"
+                             FontSize="25"
+                             IsReadOnly="True"
+                             KeyDown="ChooseFingering_KeyDown"/>
+                </Border>
+
+                <!-- Сам счётчик -->
+                <Border Grid.Column="1" BorderThickness="0.5" Background="#FFEFDCAF" BorderBrush="Black" Padding="0 5 0 5">
+                    <TextBlock Name="FingeringCounter"
+                               TextAlignment="Center" 
+                               FontSize="25"/>
+                </Border>
+            </Grid>
+
+            <!-- Предыдущая и следующая аппликатура -->
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="31,0,0,31" Width="340">
+                <Button x:Name="btn_PrevFingering"
+                        Style="{StaticResource DarkButton}"
+                        HorizontalAlignment="Left"
+                        FontSize="13" Width="162" Height="81"
+                        Cursor="Hand" 
+                        Click="btn_PrevFingering_Click">
+                    <TextBlock Text="Предыдущая аппликатура" FontSize="20" TextWrapping="Wrap" />
+                </Button>
+
+                <Button x:Name="btn_NextFingering"
+                        Style="{StaticResource DarkButton}"
+                        HorizontalAlignment="Right"
+                        Width="162" Height="81"
+                        Cursor="Hand" 
+                        Click="btn_NextFingering_Click">
+                    <TextBlock Text="Следующая аппликатура" FontSize="20" TextWrapping="Wrap"/>
+                </Button>
+            </Grid>
+
+            <!-- SettingsFrame -->
+            <local:SettingsControl x:Name="SettingsFrame" Width="1280" Visibility="Collapsed"/>
+
+        </Grid>
+
+        <!-- Гриф гитары -->
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="Images\Neck.png" Stretch="Fill"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- EllipseStyle -->
+            <Grid.Resources>
+                <Style TargetType="Ellipse">
+                    <Setter Property="Fill" Value="Black"/>
+                    <Setter Property="Width" Value="25"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Margin" Value="57 0 0 0"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </Style>
+                <Style TargetType="Image">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </Style>
+            </Grid.Resources>
+
+            <!-- Указатели аппликатур -->
+
+            <!-- 1 струна -->
+            <Grid Grid.Row="0">
+                <Image x:Name="Line1_01"
+                       Source="Images/Close.png"
+                       Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line1_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line1" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line1_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line1_2"/>
+                    <Ellipse x:Name="Line1_3"/>
+                    <Ellipse x:Name="Line1_4"/>
+                    <Ellipse x:Name="Line1_5"/>
+                    <Ellipse x:Name="Line1_6"/>
+                    <Ellipse x:Name="Line1_7"/>
+                    <Ellipse x:Name="Line1_8"/>
+                    <Ellipse x:Name="Line1_9"/>
+                    <Ellipse x:Name="Line1_10"/>
+                    <Ellipse x:Name="Line1_11"/>
+                    <Ellipse x:Name="Line1_12"/>
+                    <Ellipse x:Name="Line1_13"/>
+                    <Ellipse x:Name="Line1_14"/>
+                    <Ellipse x:Name="Line1_15"/>
+                </StackPanel>
+            </Grid>
+
+
+            <!-- 2 струна -->
+            <Grid Grid.Row="1">
+                <Image x:Name="Line2_01"
+                       Source="Images/Close.png"
+                       Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line2_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line2" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line2_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line2_2"/>
+                    <Ellipse x:Name="Line2_3"/>
+                    <Ellipse x:Name="Line2_4"/>
+                    <Ellipse x:Name="Line2_5"/>
+                    <Ellipse x:Name="Line2_6"/>
+                    <Ellipse x:Name="Line2_7"/>
+                    <Ellipse x:Name="Line2_8"/>
+                    <Ellipse x:Name="Line2_9"/>
+                    <Ellipse x:Name="Line2_10"/>
+                    <Ellipse x:Name="Line2_11"/>
+                    <Ellipse x:Name="Line2_12"/>
+                    <Ellipse x:Name="Line2_13"/>
+                    <Ellipse x:Name="Line2_14"/>
+                    <Ellipse x:Name="Line2_15"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- 3 струна -->
+            <Grid Grid.Row="2">
+                <Image x:Name="Line3_01"
+                       Source="Images/Close.png"
+                       Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line3_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line3" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line3_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line3_2"/>
+                    <Ellipse x:Name="Line3_3"/>
+                    <Ellipse x:Name="Line3_4"/>
+                    <Ellipse x:Name="Line3_5"/>
+                    <Ellipse x:Name="Line3_6"/>
+                    <Ellipse x:Name="Line3_7"/>
+                    <Ellipse x:Name="Line3_8"/>
+                    <Ellipse x:Name="Line3_9"/>
+                    <Ellipse x:Name="Line3_10"/>
+                    <Ellipse x:Name="Line3_11"/>
+                    <Ellipse x:Name="Line3_12"/>
+                    <Ellipse x:Name="Line3_13"/>
+                    <Ellipse x:Name="Line3_14"/>
+                    <Ellipse x:Name="Line3_15"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- 4 струна -->
+            <Grid Grid.Row="3">
+                <Image x:Name="Line4_01"
+                       Source="Images/Close.png"
+                       Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line4_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line4" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line4_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line4_2"/>
+                    <Ellipse x:Name="Line4_3"/>
+                    <Ellipse x:Name="Line4_4"/>
+                    <Ellipse x:Name="Line4_5"/>
+                    <Ellipse x:Name="Line4_6"/>
+                    <Ellipse x:Name="Line4_7"/>
+                    <Ellipse x:Name="Line4_8"/>
+                    <Ellipse x:Name="Line4_9"/>
+                    <Ellipse x:Name="Line4_10"/>
+                    <Ellipse x:Name="Line4_11"/>
+                    <Ellipse x:Name="Line4_12"/>
+                    <Ellipse x:Name="Line4_13"/>
+                    <Ellipse x:Name="Line4_14"/>
+                    <Ellipse x:Name="Line4_15"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- 5 струна -->
+            <Grid Grid.Row="4">
+                <Image x:Name="Line5_01"
+                       Source="Images/Close.png"
+                       Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line5_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line5" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line5_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line5_2"/>
+                    <Ellipse x:Name="Line5_3"/>
+                    <Ellipse x:Name="Line5_4"/>
+                    <Ellipse x:Name="Line5_5"/>
+                    <Ellipse x:Name="Line5_6"/>
+                    <Ellipse x:Name="Line5_7"/>
+                    <Ellipse x:Name="Line5_8"/>
+                    <Ellipse x:Name="Line5_9"/>
+                    <Ellipse x:Name="Line5_10"/>
+                    <Ellipse x:Name="Line5_11"/>
+                    <Ellipse x:Name="Line5_12"/>
+                    <Ellipse x:Name="Line5_13"/>
+                    <Ellipse x:Name="Line5_14"/>
+                    <Ellipse x:Name="Line5_15"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- 6 струна -->
+            <Grid Grid.Row="5">
+                <Image x:Name="Line6_01"
+                        Source="Images/Close.png"
+                        Width="25" Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Ellipse x:Name="Line6_0"
+                         Fill="{x:Null}" Stroke="Black" StrokeThickness="4" 
+                         Margin="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <StackPanel x:Name="Line6" Orientation="Horizontal" Margin="40 0 0 0">
+                    <Ellipse x:Name="Line6_1" Margin="30 0 0 0"/>
+                    <Ellipse x:Name="Line6_2"/>
+                    <Ellipse x:Name="Line6_3"/>
+                    <Ellipse x:Name="Line6_4"/>
+                    <Ellipse x:Name="Line6_5"/>
+                    <Ellipse x:Name="Line6_6"/>
+                    <Ellipse x:Name="Line6_7"/>
+                    <Ellipse x:Name="Line6_8"/>
+                    <Ellipse x:Name="Line6_9"/>
+                    <Ellipse x:Name="Line6_10"/>
+                    <Ellipse x:Name="Line6_11"/>
+                    <Ellipse x:Name="Line6_12"/>
+                    <Ellipse x:Name="Line6_13"/>
+                    <Ellipse x:Name="Line6_14"/>
+                    <Ellipse x:Name="Line6_15"/>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

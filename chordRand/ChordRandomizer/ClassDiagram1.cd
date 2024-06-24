@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChordRandomizer.AddedNote">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAQAAAAEIAAAAAAAAAAA=</HashCode>
+      <FileName>AddedNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.Chord">
+    <Position X="9.25" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BCIEgAAAGCCAIAAEhAAAAAigAAAAMKAAAAAIAAACAAA=</HashCode>
+      <FileName>Chord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.MusicalNotes">
+    <Position X="2" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ChordRandomizer.MusicalNotes.NotesNames" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MusicalNotes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>MusicalNotes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.Note">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAABAAE=</HashCode>
+      <FileName>Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.RootNote">
+    <Position X="2" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RootNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.GuitarFingering">
+    <Position X="6" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAADBAgIAmQAAAAgAAAIAAAoAAAAIAAAA=</HashCode>
+      <FileName>GuitarFingering.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChordRandomizer.GuitarFretboardNotes">
+    <Position X="6" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>GuitarFretboardNotes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
