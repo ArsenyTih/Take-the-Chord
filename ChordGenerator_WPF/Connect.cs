@@ -234,25 +234,29 @@ namespace ChordGenerator_WPF
         }
 
         /// <summary>
-        /// Записывает словарь в файл
+        /// Записывает словарь в файл.
         /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="collection"></param>
+        /// <param name="filename"> Название файла </param>
+        /// <param name="collection"> Словарь, в который будет записываться информация </param>
         public void WriteJSON(string filename, Dictionary<string, Chord> collection)
         {
-            FileStream f = new FileStream(filename, FileMode.Create);
+            FileStream f = new FileStream(filename, FileMode.Truncate);
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,                                   //устанавливает дополнительные пробелы (элементы расположены просто в строчку друг за другом
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  //кодировка русских символов
                 PropertyNameCaseInsensitive = true,                     // Игнорировать регистр имен
-                //IncludeFields = true                                  // Включать поля в сериализацию/десериализацию
             };
             JsonSerializer.Serialize(f, collection, options);
             //сохраняем заданный объект в заданном потоке с определенными настройками
             f.Close();
         }
 
+        /// <summary>
+        /// Читает информацию из файла.
+        /// </summary>
+        /// <param name="filename"> Название файла </param>
+        /// <returns> Возращаемый словарь </returns>
         public Dictionary<string, Chord> ReadJSON(string filename)
         {
             var options = new JsonSerializerOptions
@@ -267,6 +271,9 @@ namespace ChordGenerator_WPF
             return collection;
         }
 
+        /// <summary>
+        /// Добавляет кнопки в панель "История".
+        /// </summary>
         public void AddButtonsToHistory()
         {
             foreach (Chord chord in history.Values)
@@ -275,6 +282,9 @@ namespace ChordGenerator_WPF
             }
         }
 
+        /// <summary>
+        /// Добавляет кнопки в панель "Избранное".
+        /// </summary>
         public void AddButtonsToFavourites()
         {
             foreach (Chord chord in favourites.Values)
