@@ -1,5 +1,5 @@
-*.cs linguist-language=C#
-*.xaml linguist-language=XAML
+*.cs linguist-detectable
+*.xaml linguist-detectable
 
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
