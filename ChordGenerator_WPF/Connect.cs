@@ -12,15 +12,15 @@ namespace ChordGenerator_WPF
 {
     internal class Connect
     {
-        public MainWindow mainWindow;
+        public MainWindow mainWindow; // Главный (начальный) экран
 
         private Chord chord; // Аккорд
         private GuitarFingering[] guitarFingerings = []; // Массив аппликатур
         int fingeringIndex = 0; // Индекс в массиве аппликатур
         public int[] frets; // Массив из номеров ладов отдельной аппликатуры
-        public Dictionary<string, Chord> history = new(maxChordsInHistory+1); // Словарь сохранённых в истории аккордов
+        public Dictionary<string, Chord> history = new(maxChordsInHistory + 1); // Словарь сохранённых в истории аккордов
         public Dictionary<string, Chord> favourites = new(maxChordsInFavourites); // Словарь сохранённых в избранном аккордов
-        public object lastOpenedFrame; // последний открытый фрейм (для правильного включения справки)
+        public object lastOpenedFrame; // Последний открытый фрейм (для контекстной справки)
 
         // Статические поля класса MusicalNotes
         public List<string> MN_AllowedRootNotes = MusicalNotes.AllowedRootNotes;
@@ -126,7 +126,7 @@ namespace ChordGenerator_WPF
         public void UpdateInfoOnScreen()
         {
             mainWindow.ChordName.Text = Chord.ChordName; // Вывод названия
-            mainWindow.ChooseFingering.MaxLength = GuitarFingerings.Length.ToString().Length; // Максимальное кол-ва вводимых символов в поле ChooseFIngering
+            mainWindow.ChooseFingering.MaxLength = GuitarFingerings.Length.ToString().Length; // Максимальное кол-во вводимых символов в поле ChooseFIngering
             mainWindow.FingeringCounter.Text = GuitarFingerings.Length.ToString(); // Вывод количества аппликатур у аккорда
             mainWindow.ChooseFingering.Text = FingeringNumber; // Вывод текущей аппликатуры
         }
@@ -243,12 +243,12 @@ namespace ChordGenerator_WPF
             FileStream f = new FileStream(filename, FileMode.Truncate);
             var options = new JsonSerializerOptions
             {
-                WriteIndented = true,                                   //устанавливает дополнительные пробелы (элементы расположены просто в строчку друг за другом
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  //кодировка русских символов
-                PropertyNameCaseInsensitive = true,                     // Игнорировать регистр имен
+                WriteIndented = true,                                   // Устанавливаем дополнительные пробелы (элементы расположены просто в строчку друг за другом)
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  // Кодируем русские символы
+                PropertyNameCaseInsensitive = true,                     // Игнорируем регистр имен
             };
             JsonSerializer.Serialize(f, collection, options);
-            //сохраняем заданный объект в заданном потоке с определенными настройками
+            // Сохраняем заданный объект в заданном потоке с определенными настройками
             f.Close();
         }
 
@@ -261,10 +261,10 @@ namespace ChordGenerator_WPF
         {
             var options = new JsonSerializerOptions
             {
-                WriteIndented = true,               //устанавливает дополнительные пробелы
+                WriteIndented = true,               // Устанавливаем дополнительные пробелы
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                PropertyNameCaseInsensitive = true, // Игнорировать регистр имен
-                IncludeFields = true                // Включать поля в сериализацию/десериализацию
+                PropertyNameCaseInsensitive = true, // Игнорируем регистр имен
+                IncludeFields = true                // Включаем поля в сериализацию/десериализацию
             };
             string json = File.ReadAllText(filename);
             Dictionary<string, Chord>? collection = JsonSerializer.Deserialize<Dictionary<string, Chord>>(json, options);
